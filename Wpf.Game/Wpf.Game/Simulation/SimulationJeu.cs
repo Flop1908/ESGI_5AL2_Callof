@@ -39,35 +39,50 @@ namespace Wpf.Game.Simulation
         public void CreerPersonnage(int param_pdv, int param_pos)
         {
             Random rdm = new Random();
+
             Fantassin perso1 = new Fantassin();
+            Archer perso2 = new Archer();
+
             if (param_pdv == 0)
             {               
                 perso1 = new Fantassin("Bomberman", rdm.Next(150, 350));
                 perso1.SetAvatar();
+
+                perso2 = new Archer("Archer", rdm.Next(150, 350));
+                perso2.SetAvatar();
             }
             else if (param_pdv > 1)
             {
                 
                 perso1 = new Fantassin("Bomberman", param_pdv);
                 perso1.SetAvatar();
+
+                perso2 = new Archer("Archer", param_pdv);
+                perso2.SetAvatar();
             }
             else if (param_pdv == 1)
             {
                 perso1 = new Fantassin("Bomberman");
                 perso1.SetAvatar();
+
+                perso2 = new Archer("Archer");
+                perso2.SetAvatar();
             }
 
             if (param_pos == 0)
             {
                 perso1.Position = (Zone)plateau.GetZoneList()[rdm.Next(0, 80)];
+                perso2.Position = (Zone)plateau.GetZoneList()[rdm.Next(0, 80)];
             }
             else if (param_pos > 1)
             {
                 perso1.Position = (Zone)plateau.GetZoneList()[0];
+                perso2.Position = (Zone)plateau.GetZoneList()[0];
             }
             else if (param_pos == 1)
             {
                 perso1.Position = (Zone)plateau.GetZoneList()[25];
+                perso2.Position = (Zone)plateau.GetZoneList()[45];
             }
 
            
@@ -80,7 +95,9 @@ namespace Wpf.Game.Simulation
                     break;
                 }
             }*/
+
             PersonnageList.Add(perso1);
+            PersonnageList.Add(perso2);
         }
 
         public void CreerItem()

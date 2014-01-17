@@ -52,7 +52,7 @@ namespace Wpf.Game.Observer
         }
 
         
-        public void SetAvatar()
+        public virtual void SetAvatar()
         {
             Avatar.Source = new BitmapImage(new Uri(@"pack://application:,,/perso.png"));
             Avatar.Stretch = Stretch.Fill;

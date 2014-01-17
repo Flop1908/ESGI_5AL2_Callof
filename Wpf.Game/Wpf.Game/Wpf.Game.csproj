@@ -63,6 +63,7 @@
     <Compile Include="Fabrique\EnvironnementDeJeu.cs" />
     <Compile Include="Fabrique\FabriquePlateauDeJeu.cs" />
     <Compile Include="Fabrique\FabriquePlateauDeJeuAbstrait.cs" />
+    <Compile Include="Fabrique\Obstacle.cs" />
     <Compile Include="Objet\Goal.cs" />
     <Compile Include="Objet\Item.cs" />
     <Compile Include="Objet\PotionVie.cs" />
@@ -134,6 +135,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="goal.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="archer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

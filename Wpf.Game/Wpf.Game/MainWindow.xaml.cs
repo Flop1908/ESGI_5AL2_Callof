@@ -125,7 +125,10 @@ namespace Wpf.Game
                     ListImage.Add(img_za);
                 }
 
-                lbl_vie.Content = p.PointDeVie.ToString();
+                if(typeof(Fantassin) == p.GetType())
+                    lbl_vie1.Content = p.PointDeVie.ToString();
+                else if (typeof(Archer) == p.GetType())
+                    lbl_vie2.Content = p.PointDeVie.ToString();
             }
 
             foreach (Item i in simulation.ItemList)
@@ -205,6 +208,11 @@ namespace Wpf.Game
 
                     }
 
+                    if (typeof(Fantassin) == p.GetType())
+                        lbl_vie1.Content = p.PointDeVie.ToString();
+                    else if (typeof(Archer) == p.GetType())
+                        lbl_vie2.Content = p.PointDeVie.ToString();
+
                     foreach (Item i in simulation.ItemList)
                     {
                         if (i.Pris == false)
@@ -223,12 +231,12 @@ namespace Wpf.Game
 
                     }
 
-                    lbl_vie.Content = p.PointDeVie.ToString();
+                    
 
 
 
                     if (p.ObjectifAtteint == true) MessageBox.Show("GOAL");
-                    if (p.EstMort == true) MessageBox.Show("GAME OVER");
+                    if (p.EstMort == true) MessageBox.Show(p.Nom + " est GAME OVER");
                 }
             }            
         }

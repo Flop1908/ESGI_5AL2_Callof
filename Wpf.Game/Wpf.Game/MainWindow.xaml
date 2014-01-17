@@ -44,10 +44,13 @@
 		</TextBlock>
 		<TextBlock TextAlignment="Center">
 				<DockPanel Height="505" Width="535">		            
-					<TextBlock DockPanel.Dock="Bottom" Height="79" Margin="0,0,0,0">
+					<TextBlock DockPanel.Dock="Bottom" Height="94" Margin="0,0,0,0">
 						<Button Name="BtnNextTurn" HorizontalAlignment="Center" Content="Tour suivant" Margin="0, 20, 0, 0" Click="Button_Click_1"/>
 						<LineBreak/>
-						<Label Content="Point de Vie : "></Label><Label Name="lbl_vie"></Label>
+						<Label Content="Point de Vie J1: "></Label><Label Name="lbl_vie1"></Label>
+                        
+                        <LineBreak/>
+						<Label Content="Point de Vie J2: "></Label><Label Name="lbl_vie2"></Label>
 					</TextBlock>
 					<TextBlock Name="PanelContent">
 					
