@@ -38,7 +38,7 @@ namespace Wpf.Game.Simulation
 
         public void CreerPersonnage()
         {
-            Fantassin perso1 = new Fantassin("Bomberman", 200);            
+            Fantassin perso1 = new Fantassin("Bomberman");            
             perso1.SetAvatar();
 
             foreach (Zone z in plateau.GetZoneList())

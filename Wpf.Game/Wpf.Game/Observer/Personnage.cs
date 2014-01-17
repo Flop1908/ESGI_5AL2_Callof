@@ -63,9 +63,11 @@ namespace Wpf.Game.Observer
         {
             if (ProchainCoupGagnant == null)
             {
+                
                 Random random = new Random();
-                Position.row = random.Next(0, 10);
-                Position.column = random.Next(0, 10);
+                int i = random.Next(0, ZoneAcessibleList.Count);
+                Zone zone = (Zone)ZoneAcessibleList[i];
+                Position = zone;
             }
             else
             {
@@ -144,7 +146,7 @@ namespace Wpf.Game.Observer
            
             PointDeVie -= 20;
 
-            if (PointDeVie < 0) EstMort = true;
+            if (PointDeVie <= 0) EstMort = true;
         }
 
         public string Execution()

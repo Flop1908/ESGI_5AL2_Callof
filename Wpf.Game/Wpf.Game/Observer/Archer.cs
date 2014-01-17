@@ -10,21 +10,11 @@ namespace Wpf.Game.Observer
 {
     class Archer : Personnage
     {
-        /*public Archer(string unNom)
-            : base(unNom)
+        public Archer(string _Nom, int _Vie = 150)
+            : base(_Nom, _Vie)
         {
-            ComportementCombat = new ComportementAvecArc();
-            ComportementEmettreUnSon = new ComportementParler();
+            //ComportementCombat = new ComportementApiedAvecHache();
+            //ComportementEmettreUnSon = new ComportementCrier();
         }
-
-        public override string Afficher()
-        {
-            return "Archer " + Nom;
-        }
-
-        public override string SeDeplacer()
-        {
-            return "Je marche à pied";
-        }*/
     }
 }

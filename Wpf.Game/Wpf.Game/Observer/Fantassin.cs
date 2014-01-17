@@ -11,22 +11,12 @@ namespace Wpf.Game.Observer
     class Fantassin : Personnage
     {
 
-        public Fantassin(string _Nom, int _Vie)
+        public Fantassin(string _Nom, int _Vie = 200)
             : base(_Nom, _Vie)
         {
             //ComportementCombat = new ComportementApiedAvecHache();
             //ComportementEmettreUnSon = new ComportementCrier();
         }
 
-        /*public override string Afficher()
-        {
-            return "Fantassin " + Nom;
-        }
-
-       
-        public override string SeDeplacer()
-        {
-            return "Je marche à pied";
-        }*/
     }
 }

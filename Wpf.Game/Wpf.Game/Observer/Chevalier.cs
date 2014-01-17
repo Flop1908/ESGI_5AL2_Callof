@@ -10,20 +10,11 @@ namespace Wpf.Game.Observer
 {
     class Chevalier : Personnage
     {
-        /*public Chevalier(string unNom) : base(unNom)
+        public Chevalier(string _Nom, int _Vie = 300)
+            : base(_Nom, _Vie)
         {
-            ComportementCombat = new ComportementAcheval();
-            ComportementEmettreUnSon = new ComportementCrier();
+            //ComportementCombat = new ComportementApiedAvecHache();
+            //ComportementEmettreUnSon = new ComportementCrier();
         }
-
-        public override string Afficher()
-        {
-            return "Chevalier " + Nom;
-        }
-
-        public override string SeDeplacer()
-        {
-            return "Je trotte, je galope";
-        }*/
     }
 }

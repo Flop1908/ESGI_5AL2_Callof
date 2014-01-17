@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Wpf.Game.Fabrique;
 using Wpf.Game.Objet;
 using Wpf.Game.Observer;
@@ -32,6 +24,8 @@ namespace Wpf.Game
             InitializeComponent();
 
             ShowWindow();
+            if (rb_deplacement.IsChecked.Value)
+                
             ListImage = new List<Image>();
         }
 
@@ -67,6 +61,8 @@ namespace Wpf.Game
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            
+
             simulation = new SimulationJeu();                     
 
             foreach (Personnage p in simulation.PersonnageList)
@@ -130,6 +126,8 @@ namespace Wpf.Game
                 Grid_Game.Children.Add(i.Avatar);
 
             }
+
+            //BtnNextTurn.isdisabled = false;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
