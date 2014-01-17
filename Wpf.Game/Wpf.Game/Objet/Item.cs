@@ -15,11 +15,13 @@ namespace Wpf.Game.Objet
         public int Potion { get; set; }
         public Image Avatar;
         public Zone Position { get; set; }
+        public bool Pris;
 
         public Item()
         {
             Avatar = new Image();
             Position = new Zone();
+            Pris = false;
         }
 
         public virtual void SetAvatar()

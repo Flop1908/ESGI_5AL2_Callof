@@ -10,7 +10,8 @@ namespace Wpf.Game.Observer
 {
     class Fantassin : Personnage
     {
-
+        public Fantassin()
+        {}
         public Fantassin(string _Nom, int _Vie = 200)
             : base(_Nom, _Vie)
         {

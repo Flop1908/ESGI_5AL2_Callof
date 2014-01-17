@@ -23,7 +23,7 @@ namespace Wpf.Game.Simulation
         private EnvironnementDeJeu Environnement;
         //private eMode EtatMajor;
 
-        public SimulationJeu()
+        public SimulationJeu(int parameter_pointdevie, int parameter_position)
         {
             PersonnageList = new List<Personnage>();
             ItemList = new List<Item>();
@@ -32,23 +32,54 @@ namespace Wpf.Game.Simulation
             //EtatMajor = new eMode();
 
             CreerPlateauDeJeu();
-            CreerPersonnage();
+            CreerPersonnage(parameter_pointdevie, parameter_position);
             CreerItem();
         }
 
-        public void CreerPersonnage()
+        public void CreerPersonnage(int param_pdv, int param_pos)
         {
-            Fantassin perso1 = new Fantassin("Bomberman");            
-            perso1.SetAvatar();
+            Random rdm = new Random();
+            Fantassin perso1 = new Fantassin();
+            if (param_pdv == 0)
+            {               
+                perso1 = new Fantassin("Bomberman", rdm.Next(150, 350));
+                perso1.SetAvatar();
+            }
+            else if (param_pdv > 1)
+            {
+                
+                perso1 = new Fantassin("Bomberman", param_pdv);
+                perso1.SetAvatar();
+            }
+            else if (param_pdv == 1)
+            {
+                perso1 = new Fantassin("Bomberman");
+                perso1.SetAvatar();
+            }
 
-            foreach (Zone z in plateau.GetZoneList())
+            if (param_pos == 0)
+            {
+                perso1.Position = (Zone)plateau.GetZoneList()[rdm.Next(0, 80)];
+            }
+            else if (param_pos > 1)
+            {
+                perso1.Position = (Zone)plateau.GetZoneList()[0];
+            }
+            else if (param_pos == 1)
+            {
+                perso1.Position = (Zone)plateau.GetZoneList()[25];
+            }
+
+           
+
+            /*foreach (Zone z in plateau.GetZoneList())
             {
                 if (z.column == 0 && z.row == 0)
                 {
                     perso1.Position = z;
                     break;
                 }
-            }
+            }*/
             PersonnageList.Add(perso1);
         }
 
@@ -69,8 +100,8 @@ namespace Wpf.Game.Simulation
 
             ItemList.Add(goal);
 
-            /*PotionVie potion = new PotionVie();
-            potion.Potion = 100;
+            PotionVie potion = new PotionVie();
+            potion.Potion = 250;
             potion.SetAvatar();
 
             foreach (Zone z in plateau.GetZoneList())
@@ -82,7 +113,7 @@ namespace Wpf.Game.Simulation
                 }
             }
 
-            ItemList.Add(potion);*/
+            ItemList.Add(potion);
         }
 
         public void CreerPlateauDeJeu()

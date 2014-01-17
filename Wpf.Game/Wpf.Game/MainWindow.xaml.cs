@@ -19,12 +19,15 @@ namespace Wpf.Game
         SimulationJeu simulation;
 
         List<Image> ListImage;
+
+        
+
         public MainWindow()
         {
             InitializeComponent();
 
             ShowWindow();
-            if (rb_deplacement.IsChecked.Value)
+            
                 
             ListImage = new List<Image>();
         }
@@ -39,41 +42,59 @@ namespace Wpf.Game
 
             Grid_Game.Background.Opacity = 0.3;
             
-            /*for (int i = 0; i < 10; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-
-                    Image img = new Image();
-                    img.Source = new BitmapImage(new Uri(@"pack://application:,,/image.jpg"));
-                    img.Stretch = Stretch.Fill;
-                    //img.Opacity = 0.5;
-                    
-                    Grid.SetRow(img, i);
-                    Grid.SetColumn(img, j);
-
-                    Grid_Game.Children.Add(img);
-                }                
-            }*/
+            
         }
 
+        private int GetParamPdv()
+        {
+            if (rb_pdv_hasard.IsChecked == true)
+            {
+                return 0;
+            }
+            else if (rb_pdv_identique.IsChecked == true)
+            {
+                return Int32.Parse(tb_pdv.Text);
+            }
+            else if (rb_pdv_defaut.IsChecked == true)
+            {
+                return 1;
+            }
 
+            return 0;
+        }
+
+        private int GetParamPosition()
+        {
+            if (rb_pos_hasard.IsChecked == true)
+            {
+                return 0;
+            }
+            else if (rb_pos_identique.IsChecked == true)
+            {
+                //return Int32.Parse(tb_position.Text);
+                return 5;
+            }
+            else if (rb_pos_defaut.IsChecked == true)
+            {
+                return 1;
+            }
+
+            return 0;
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Grid_Game.Children.Clear();
+
             
 
-            simulation = new SimulationJeu();                     
+            simulation = new SimulationJeu(GetParamPdv(), GetParamPosition());                     
 
             foreach (Personnage p in simulation.PersonnageList)
             {
                 Image img_back = new Image();
                 img_back.Source = new BitmapImage(new Uri(@"pack://application:,,/image.jpg"));
                 img_back.Stretch = Stretch.Fill;
-
-                Random random = new Random();
-                p.Position.row = random.Next(0, 10);
-                p.Position.column = random.Next(0, 10);
 
                 Grid.SetRow(img_back, p.Position.row);
                 Grid.SetColumn(img_back, p.Position.column);
@@ -82,7 +103,7 @@ namespace Wpf.Game
 
                 ListImage.Add(img_back);
                 p.AnalyseSituation(simulation.ItemList);
-
+                p.PointDeVie += 20;
                 Grid.SetRow(p.Avatar, p.Position.row);
                 Grid.SetColumn(p.Avatar, p.Position.column);
                 Grid_Game.Children.Remove(p.Avatar);
@@ -139,53 +160,76 @@ namespace Wpf.Game
             ListImage.Clear();
 
             foreach (Personnage p in simulation.PersonnageList)
-            {                
-                Image img_back = new Image();
-                img_back.Source = new BitmapImage(new Uri(@"pack://application:,,/image.jpg"));
-                img_back.Stretch = Stretch.Fill;
+            {
+                if (p.EstMort == false)
+                {
+                    Image img_back = new Image();
+                    img_back.Source = new BitmapImage(new Uri(@"pack://application:,,/image.jpg"));
+                    img_back.Stretch = Stretch.Fill;
 
-                p.SeDeplacer();
-                p.AnalyseSituation(simulation.ItemList);                
+                    p.SeDeplacer();
+                    p.AnalyseSituation(simulation.ItemList);
 
 
-                Grid.SetRow(img_back, p.Position.row);
-                Grid.SetColumn(img_back, p.Position.column);
-                Grid_Game.Children.Remove(img_back);
-                Grid_Game.Children.Add(img_back);
+                    Grid.SetRow(img_back, p.Position.row);
+                    Grid.SetColumn(img_back, p.Position.column);
+                    Grid_Game.Children.Remove(img_back);
+                    Grid_Game.Children.Add(img_back);
 
-                ListImage.Add(img_back);
+                    ListImage.Add(img_back);
 
-                Grid.SetRow(p.Avatar, p.Position.row);
-                Grid.SetColumn(p.Avatar, p.Position.column);
-                Grid_Game.Children.Remove(p.Avatar);
-                Grid_Game.Children.Add(p.Avatar);
+                    Grid.SetRow(p.Avatar, p.Position.row);
+                    Grid.SetColumn(p.Avatar, p.Position.column);
+                    Grid_Game.Children.Remove(p.Avatar);
+                    Grid_Game.Children.Add(p.Avatar);
 
-                foreach (Zone z in p.ZoneAcessibleList)
-                {                    
-                    foreach (Item item in simulation.ItemList)
+                    foreach (Zone z in p.ZoneAcessibleList)
                     {
-                        if (item.Position.column == z.column && item.Position.row == z.row) continue;
+                        foreach (Item item in simulation.ItemList)
+                        {
+                            if ((item.Position.column == z.column) && (item.Position.row == z.row)) continue;
+                            else
+                            {
+                                Image img_za = new Image();
+                                img_za.Source = new BitmapImage(new Uri(@"pack://application:,,/image.jpg"));
+                                img_za.Stretch = Stretch.Fill;
+
+                                Grid.SetRow(img_za, z.row);
+                                Grid.SetColumn(img_za, z.column);
+                                Grid_Game.Children.Remove(img_za);
+                                Grid_Game.Children.Add(img_za);
+
+                                ListImage.Add(img_za);
+                            }
+                        }
+
+                    }
+
+                    foreach (Item i in simulation.ItemList)
+                    {
+                        if (i.Pris == false)
+                        {
+                            Grid.SetRow(i.Avatar, i.Position.row);
+                            Grid.SetColumn(i.Avatar, i.Position.column);
+                            Grid_Game.Children.Remove(i.Avatar);
+                            Grid_Game.Children.Add(i.Avatar);
+                        }
                         else
                         {
-                            Image img_za = new Image();
-                            img_za.Source = new BitmapImage(new Uri(@"pack://application:,,/image.jpg"));
-                            img_za.Stretch = Stretch.Fill;
-
-                            Grid.SetRow(img_za, z.row);
-                            Grid.SetColumn(img_za, z.column);
-                            Grid_Game.Children.Remove(img_za);
-                            Grid_Game.Children.Add(img_za);
-
-                            ListImage.Add(img_za);
+                            Grid.SetRow(i.Avatar, i.Position.row);
+                            Grid.SetColumn(i.Avatar, i.Position.column);
+                            Grid_Game.Children.Remove(i.Avatar);
                         }
+
                     }
-                    
+
+                    lbl_vie.Content = p.PointDeVie.ToString();
+
+
+
+                    if (p.ObjectifAtteint == true) MessageBox.Show("GOAL");
+                    if (p.EstMort == true) MessageBox.Show("GAME OVER");
                 }
-
-                lbl_vie.Content = p.PointDeVie.ToString();
-
-                if (p.ObjectifAtteint == true) MessageBox.Show("GOAL");
-                if (p.EstMort == true) MessageBox.Show("GAME OVER");
             }            
         }
         

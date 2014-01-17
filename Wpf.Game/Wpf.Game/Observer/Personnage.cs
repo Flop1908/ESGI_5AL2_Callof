@@ -68,11 +68,15 @@ namespace Wpf.Game.Observer
                 int i = random.Next(0, ZoneAcessibleList.Count);
                 Zone zone = (Zone)ZoneAcessibleList[i];
                 Position = zone;
+
+                
             }
             else
             {
                 Position.column = ProchainCoupGagnant.column;
                 Position.row = ProchainCoupGagnant.row;
+
+                ProchainCoupGagnant = null;
             }
 
         }
@@ -124,12 +128,13 @@ namespace Wpf.Game.Observer
                         ProchainCoupGagnant = item.Position;
                     }
                 }
-                else if (typeof(PotionVie) == item.GetType())
+                else if (typeof(PotionVie) == item.GetType() && item.Pris == false)
                 {
                     if (item.Position.row == this.Position.row && item.Position.column == this.Position.column)
                     {
                         PointDeVie += item.Potion;
                         PrendPotion = true;
+                        item.Pris = true;
                         //ListItem.Remove(item);
                     }
                     else if ((z1.row == item.Position.row && z1.column == item.Position.column) ||
@@ -141,7 +146,7 @@ namespace Wpf.Game.Observer
 
                     }
                 }
-                
+ 
             }
            
             PointDeVie -= 20;
