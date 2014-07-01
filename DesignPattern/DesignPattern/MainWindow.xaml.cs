@@ -8,7 +8,7 @@ using System.Windows.Media.Imaging;
 using DesignPattern.Fabrique;
 using DesignPattern.Objet;
 using DesignPattern.Observer;
-using Wpf.Game.Simulation;
+using DesignPattern.Simulation;
 
 namespace DesignPattern
 {
@@ -116,7 +116,7 @@ namespace DesignPattern
 
             if (GetParamPlateau() == 1)
             {
-                foreach (var i in _simulation.plateaufinal.ItemList)
+                foreach (var i in _simulation.Plateaufinal.ItemList)
                 {
                     if (i is Goal)
                     {
@@ -136,7 +136,7 @@ namespace DesignPattern
                 }
             }
 
-            foreach (var p in _simulation.plateau.PersonnageList)
+            foreach (var p in _simulation.Plateau.PersonnageList)
             {
                 var imgBack = new Image();
                 imgBack.Source = new BitmapImage(new Uri(@"pack://application:,,/image.jpg"));
@@ -148,7 +148,7 @@ namespace DesignPattern
                 GridGame.Children.Add(imgBack);
 
                 _listImage.Add(imgBack);
-                p.AnalyseSituation(_simulation.plateau.ItemList);
+                p.AnalyseSituation(_simulation.Plateau.ItemList);
                 p.PointDeVie += 20;
                 Grid.SetRow(p.Avatar, p.Position.row);
                 Grid.SetColumn(p.Avatar, p.Position.column);
@@ -177,7 +177,7 @@ namespace DesignPattern
                     LblVie2.Content = p.PointDeVie.ToString(CultureInfo.InvariantCulture);
             }
 
-            foreach (var i in _simulation.plateau.ItemList)
+            foreach (var i in _simulation.Plateau.ItemList)
             {
                 if (i is Goal)
                 {
@@ -212,8 +212,9 @@ namespace DesignPattern
             _listImage.Clear();
 
             //Mise à jour des personnages
-            foreach (var p in _simulation.plateau.PersonnageList)
+            foreach (var p in _simulation.Plateau.PersonnageList)
             {
+                // Changement d'état et observer
                 var obs = new Observateur(p, "Passe à l'action");
                 Attach(obs);
                 p.Execution();
@@ -222,12 +223,13 @@ namespace DesignPattern
 
                 if (p.EstMort == false && p.EtatCourant is EtatEnAction)
                 {
+                    //traitement visuel xaml
                     var imgBack = new Image();
                     imgBack.Source = new BitmapImage(new Uri(@"pack://application:,,/image.jpg"));
                     imgBack.Stretch = Stretch.Fill;
 
                     p.SeDeplacer();
-                    p.AnalyseSituation(_simulation.plateau.ItemList);
+                    p.AnalyseSituation(_simulation.Plateau.ItemList);
 
                     Grid.SetRow(imgBack, p.Position.row);
                     Grid.SetColumn(imgBack, p.Position.column);
@@ -245,7 +247,7 @@ namespace DesignPattern
                     foreach (var zoneAbstrait in p.ZoneAcessibleList)
                     {
                         var z = (Zone) zoneAbstrait;
-                        foreach (var item in _simulation.plateau.ItemList)
+                        foreach (var item in _simulation.Plateau.ItemList)
                         {
                             if ((item.Position.column == z.column) && (item.Position.row == z.row)) continue;
                             var imgZa = new Image();
@@ -267,7 +269,7 @@ namespace DesignPattern
                     else if (typeof (Archer) == p.GetType())
                         LblVie2.Content = p.PointDeVie.ToString(CultureInfo.InvariantCulture);
 
-                    foreach (var i in _simulation.plateau.ItemList)
+                    foreach (var i in _simulation.Plateau.ItemList)
                     {
                         if (i.Pris == false)
                         {
