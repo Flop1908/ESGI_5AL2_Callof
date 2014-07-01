@@ -1,5 +1,8 @@
 ﻿namespace DesignPattern.Observer
 {
+    /// <summary>
+    /// Classe d'observateur pour les personnages
+    /// </summary>
     internal class Observateur : ObservateurAbstrait
     {
         private readonly string nom;

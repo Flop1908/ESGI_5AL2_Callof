@@ -1,5 +1,8 @@
 ﻿namespace DesignPattern.Fabrique
 {
+    /// <summary>
+    /// Classe abstraite des zones
+    /// </summary>
     public abstract class ZoneAbstrait
     {
         //public string unNom;

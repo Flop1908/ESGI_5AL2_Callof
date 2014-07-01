@@ -4,6 +4,9 @@ using DesignPattern.Observer;
 
 namespace DesignPattern.Fabrique
 {
+    /// <summary>
+    /// Classe de création d'un plateau de jeu complet
+    /// </summary>
     internal class PlateauFinal : PlateauDeJeuAbstrait
     {
         public PlateauFinal()

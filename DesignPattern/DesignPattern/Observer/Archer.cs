@@ -7,6 +7,9 @@ using DesignPattern.Objet;
 
 namespace DesignPattern.Observer
 {
+    /// <summary>
+    /// Classe de personnage représentant un archer
+    /// </summary>
     internal class Archer : Personnage
     {
         public Archer()

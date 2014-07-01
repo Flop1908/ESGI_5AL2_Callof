@@ -2,6 +2,9 @@
 
 namespace DesignPattern.Fabrique
 {
+    /// <summary>
+    /// Classe de création abstraite des plateaux
+    /// </summary>
     internal abstract class PlateauDeJeuAbstrait
     {
         private readonly List<AccesAbstrait> AccesList;

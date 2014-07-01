@@ -3,6 +3,9 @@ using DesignPattern.Fabrique;
 
 namespace DesignPattern.Objet
 {
+    /// <summary>
+    /// Classe représentant les items du jeu
+    /// </summary>
     public abstract class Item
     {
         public Image Avatar;

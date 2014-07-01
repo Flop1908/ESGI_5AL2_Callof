@@ -4,6 +4,9 @@ using System.Windows.Media.Imaging;
 
 namespace DesignPattern.Objet
 {
+    /// <summary>
+    /// Représente le trophée permettant une victoire
+    /// </summary>
     internal class Goal : Item
     {
         public override void SetAvatar(string img)

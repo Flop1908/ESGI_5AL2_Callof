@@ -8,6 +8,9 @@ using DesignPattern.Objet;
 
 namespace DesignPattern.Observer
 {
+    /// <summary>
+    /// Classe abstraite représentant les personnages du jeu
+    /// </summary>
     public abstract class Personnage
     {
         public Image Avatar;

@@ -4,6 +4,9 @@ using DesignPattern.Observer;
 
 namespace DesignPattern.Fabrique
 {
+    /// <summary>
+    /// Création d'un plateau de jeu
+    /// </summary>
     internal class PlateauDeJeu : PlateauDeJeuAbstrait
     {
         public List<Item> ItemList;

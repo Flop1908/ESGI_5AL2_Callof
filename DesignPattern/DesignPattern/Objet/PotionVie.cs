@@ -4,6 +4,9 @@ using System.Windows.Media.Imaging;
 
 namespace DesignPattern.Objet
 {
+    /// <summary>
+    /// Classe représentant une potion de vie
+    /// </summary>
     internal class PotionVie : Item
     {
         public override void SetAvatar(string img)

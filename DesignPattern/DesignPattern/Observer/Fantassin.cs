@@ -7,6 +7,9 @@ using DesignPattern.Objet;
 
 namespace DesignPattern.Observer
 {
+    /// <summary>
+    /// Classe de personnage représentant un fantassin
+    /// </summary>
     internal class Fantassin : Personnage
     {
         public Fantassin()

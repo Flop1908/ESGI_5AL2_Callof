@@ -3,17 +3,20 @@ using DesignPattern.Fabrique;
 using DesignPattern.Objet;
 using DesignPattern.Observer;
 
-namespace Wpf.Game.Simulation
+namespace DesignPattern.Simulation
 {
+    /// <summary>
+    /// Classe de gestion de la simaulation de jeu
+    /// </summary>
     internal class SimulationJeu
     {
-        private static SimulationJeu uneInstance;
-        private EnvironnementDeJeu Environnement;
-        private FabriquePlateauDeJeu FPlateau;
-        public PlateauDeJeu plateau;
-        public PlateauFinal plateaufinal;
+        private static SimulationJeu _uneInstance;
+        private EnvironnementDeJeu _environnement;
+        private FabriquePlateauDeJeu _fPlateau;
+        public PlateauDeJeu Plateau;
+        public PlateauFinal Plateaufinal;
 
-        private Random rdm;
+        private Random _rdm;
 
         private SimulationJeu()
         {
@@ -23,52 +26,52 @@ namespace Wpf.Game.Simulation
         {
             get
             {
-                if (uneInstance == null)
+                if (_uneInstance == null)
                 {
-                    uneInstance = new SimulationJeu();
+                    _uneInstance = new SimulationJeu();
                 }
 
-                return uneInstance;
+                return _uneInstance;
             }
         }
 
-        public void Initialisation(int parameter_plateau, int parameter_pointdevie, int parameter_position)
+        public void Initialisation(int parameterPlateau, int parameterPointdevie, int parameterPosition)
         {
-            Environnement = new EnvironnementDeJeu();
-            plateau = new PlateauDeJeu();
-            plateaufinal = new PlateauFinal();
+            _environnement = new EnvironnementDeJeu();
+            Plateau = new PlateauDeJeu();
+            Plateaufinal = new PlateauFinal();
 
 
-            CreerPlateauDeJeu(parameter_plateau);
-            CreerPersonnage(parameter_pointdevie, parameter_position);
-            CreerItem(parameter_plateau);
-            if (parameter_plateau == 1) CreerPortail();
+            CreerPlateauDeJeu(parameterPlateau);
+            CreerPersonnage(parameterPointdevie, parameterPosition);
+            CreerItem(parameterPlateau);
+            if (parameterPlateau == 1) CreerPortail();
         }
 
-        public void CreerPersonnage(int param_pdv, int param_pos)
+        public void CreerPersonnage(int paramPdv, int paramPos)
         {
-            rdm = new Random();
+            _rdm = new Random();
 
             var perso1 = new Chevalier();
             var perso2 = new Archer();
 
-            if (param_pdv == 0)
+            if (paramPdv == 0)
             {
-                perso1 = new Chevalier("Bomberman", new EtatEnAttente(), rdm.Next(150, 350));
+                perso1 = new Chevalier("Bomberman", new EtatEnAttente(), _rdm.Next(150, 350));
                 perso1.SetAvatar();
 
-                perso2 = new Archer("Archer", new EtatEnAttente(), rdm.Next(150, 350));
+                perso2 = new Archer("Archer", new EtatEnAttente(), _rdm.Next(150, 350));
                 perso2.SetAvatar();
             }
-            else if (param_pdv > 1)
+            else if (paramPdv > 1)
             {
-                perso1 = new Chevalier("Bomberman", new EtatEnAttente(), param_pdv);
+                perso1 = new Chevalier("Bomberman", new EtatEnAttente(), paramPdv);
                 perso1.SetAvatar();
 
-                perso2 = new Archer("Archer", new EtatEnAttente(), param_pdv);
+                perso2 = new Archer("Archer", new EtatEnAttente(), paramPdv);
                 perso2.SetAvatar();
             }
-            else if (param_pdv == 1)
+            else if (paramPdv == 1)
             {
                 perso1 = new Chevalier("Bomberman", new EtatEnAttente());
                 perso1.SetAvatar();
@@ -77,41 +80,42 @@ namespace Wpf.Game.Simulation
                 perso2.SetAvatar();
             }
 
-            if (param_pos == 0)
+            if (paramPos == 0)
             {
-                perso1.Position = (Zone) plateau.GetZoneList()[rdm.Next(0, 80)];
-                perso2.Position = (Zone) plateau.GetZoneList()[rdm.Next(0, 80)];
+                perso1.Position = (Zone) Plateau.GetZoneList()[_rdm.Next(0, 80)];
+                perso2.Position = (Zone) Plateau.GetZoneList()[_rdm.Next(0, 80)];
             }
-            else if (param_pos > 1)
+            else if (paramPos > 1)
             {
-                perso1.Position = (Zone) plateau.GetZoneList()[0];
-                perso2.Position = (Zone) plateau.GetZoneList()[0];
+                perso1.Position = (Zone) Plateau.GetZoneList()[0];
+                perso2.Position = (Zone) Plateau.GetZoneList()[0];
             }
-            else if (param_pos == 1)
+            else if (paramPos == 1)
             {
-                perso1.Position = (Zone) plateau.GetZoneList()[25];
-                perso2.Position = (Zone) plateau.GetZoneList()[45];
+                perso1.Position = (Zone) Plateau.GetZoneList()[25];
+                perso2.Position = (Zone) Plateau.GetZoneList()[45];
             }
 
 
-            plateau.PersonnageList.Add(perso1);
-            plateau.PersonnageList.Add(perso2);
+            Plateau.PersonnageList.Add(perso1);
+            Plateau.PersonnageList.Add(perso2);
         }
 
-        public void CreerItem(int param_plat)
+        public void CreerItem(int paramPlat)
         {
             var goal = new Goal();
             goal.Potion = 100;
             goal.SetAvatar("goal.jpg");
-            if (param_plat == 1)
+            if (paramPlat == 1)
             {
-                goal.Position = (Zone) plateaufinal.GetZoneList()[4];
-                plateaufinal.ItemList.Add(goal);
+                goal.Position = (Zone) Plateaufinal.GetZoneList()[4];
+                Plateaufinal.ItemList.Add(goal);
             }
             else
             {
-                foreach (Zone z in plateau.GetZoneList())
+                foreach (var zoneAbstrait in Plateau.GetZoneList())
                 {
+                    var z = (Zone) zoneAbstrait;
                     if (z.column == 8 && z.row == 8)
                     {
                         goal.Position = z;
@@ -119,15 +123,16 @@ namespace Wpf.Game.Simulation
                     }
                 }
 
-                plateau.ItemList.Add(goal);
+                Plateau.ItemList.Add(goal);
             }
 
             var potion = new PotionVie();
             potion.Potion = 250;
             potion.SetAvatar("potion.gif");
 
-            foreach (Zone z in plateau.GetZoneList())
+            foreach (var zoneAbstrait in Plateau.GetZoneList())
             {
+                var z = (Zone) zoneAbstrait;
                 if (z.column == 4 && z.row == 5)
                 {
                     potion.Position = z;
@@ -135,7 +140,7 @@ namespace Wpf.Game.Simulation
                 }
             }
 
-            plateau.ItemList.Add(potion);
+            Plateau.ItemList.Add(potion);
         }
 
         public void CreerPortail()
@@ -143,21 +148,21 @@ namespace Wpf.Game.Simulation
             var portailbleu = new Portail();
             portailbleu.SetAvatar("portalbleu.jpg");
 
-            portailbleu.Position = (Zone) plateau.GetZoneList()[rdm.Next(0, plateau.GetZoneList().Count - 1)];
-            plateau.ItemList.Add(portailbleu);
+            portailbleu.Position = (Zone) Plateau.GetZoneList()[_rdm.Next(0, Plateau.GetZoneList().Count - 1)];
+            Plateau.ItemList.Add(portailbleu);
 
             var portailrouge = new Portail();
             portailrouge.SetAvatar("portalrouge.jpg");
 
-            portailrouge.Position = (Zone) plateaufinal.GetZoneList()[0];
-            plateaufinal.ItemList.Add(portailrouge);
+            portailrouge.Position = (Zone) Plateaufinal.GetZoneList()[0];
+            Plateaufinal.ItemList.Add(portailrouge);
         }
 
-        public void CreerPlateauDeJeu(int param_plateau)
+        public void CreerPlateauDeJeu(int paramPlateau)
         {
-            FPlateau = new FabriquePlateauDeJeu();
-            plateau = Environnement.CreerPlateauDeJeu(FPlateau);
-            if (param_plateau == 1) plateaufinal = Environnement.CreerPlateauFinal(FPlateau);
+            _fPlateau = new FabriquePlateauDeJeu();
+            Plateau = _environnement.CreerPlateauDeJeu(_fPlateau);
+            if (paramPlateau == 1) Plateaufinal = _environnement.CreerPlateauFinal(_fPlateau);
         }
     }
 }
