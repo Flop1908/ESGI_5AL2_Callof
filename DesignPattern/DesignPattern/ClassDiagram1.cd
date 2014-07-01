@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DesignPattern.App" Collapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.MainWindow" Collapsed="true">
+    <Position X="12" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAABAAIAAAAAAAEAQIAAQBBEAAAAAABAAAQ=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Fabrique.AccesAbstrait" Collapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Fabrique\AccesAbstrait.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Fabrique.EnvironnementDeJeu" Collapsed="true">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Fabrique\EnvironnementDeJeu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Fabrique.FabriquePlateauDeJeu">
+    <Position X="17" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Fabrique\FabriquePlateauDeJeu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Fabrique.FabriquePlateauDeJeuAbstrait">
+    <Position X="17" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Fabrique\FabriquePlateauDeJeuAbstrait.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Fabrique.PlateauDeJeu">
+    <Position X="11.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Fabrique\PlateauDeJeu.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="PersonnageList" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DesignPattern.Fabrique.PlateauDeJeuAbstrait">
+    <Position X="14.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QBAAAAJAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Fabrique\PlateauDeJeuAbstrait.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="ZoneList" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DesignPattern.Fabrique.PlateauFinal" Collapsed="true">
+    <Position X="11.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Fabrique\PlateauFinal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Fabrique.Zone" Collapsed="true">
+    <Position X="14.25" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Fabrique\Zone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Fabrique.ZoneAbstrait" Collapsed="true">
+    <Position X="14.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Fabrique\ZoneAbstrait.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Objet.Goal" Collapsed="true">
+    <Position X="5.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objet\Goal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Objet.Item" Collapsed="true">
+    <Position X="3" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAABAAgAAQAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Objet\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Objet.Portail" Collapsed="true">
+    <Position X="0.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objet\Portail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Objet.PotionVie" Collapsed="true">
+    <Position X="3" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objet\PotionVie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Observer.Archer" Collapsed="true">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAABAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Observer\Archer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Observer.Chevalier" Collapsed="true">
+    <Position X="5.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Observer\Chevalier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Observer.EtatAbstrait" Collapsed="true">
+    <Position X="12.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Observer\EtatAbstrait.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Observer.EtatEnAction" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Observer\EtatEnAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Observer.EtatEnAttente" Collapsed="true">
+    <Position X="13.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Observer\EtatEnAttente.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Observer.Fantassin" Collapsed="true">
+    <Position X="0.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAABAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Observer\Fantassin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Observer.Observateur">
+    <Position X="8.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAJAAACAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Observer\Observateur.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="etatObservé" />
+      <Property Name="Personnage" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DesignPattern.Observer.ObservateurAbstrait">
+    <Position X="8.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Observer\ObservateurAbstrait.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Observer.Personnage" Collapsed="true">
+    <Position X="3" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAABAAhAARAAAAgACAIIAAAAjBIAAAAAAA=</HashCode>
+      <FileName>Observer\Personnage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Properties.Resources" Collapsed="true">
+    <Position X="13.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.Properties.Settings" Collapsed="true">
+    <Position X="15.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf.Game.Simulation.SimulationJeu">
+    <Position X="17" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQCAAAIAEIAAAAABQAAAAAAAIAAAQAAAAACAADA=</HashCode>
+      <FileName>Simulation\SimulationJeu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
