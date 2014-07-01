@@ -1,32 +1,22 @@
-﻿using DesignPattern.Objet;
+﻿using System.Collections.Generic;
+using DesignPattern.Objet;
 using DesignPattern.Observer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesignPattern.Fabrique
 {
-    class PlateauFinal : PlateauDeJeuAbstrait
+    internal class PlateauFinal : PlateauDeJeuAbstrait
     {
-        public List<Personnage> PersonnageList { get; set; }
-        public List<Item> ItemList { get; set; }
-
-
         public PlateauFinal()
-            : base()
         {
-            for (int i = 0; i < 1; i++)
+            for (var i = 0; i < 1; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (var j = 0; j < 5; j++)
                 {
-                    Zone Zone = new Zone();
-                    Zone.column = i;
-                    Zone.row = j;
+                    var zone = new Zone();
+                    zone.column = i;
+                    zone.row = j;
 
-                    this.AjouteZone(Zone);
-
+                    AjouteZone(zone);
                 }
             }
 
@@ -34,5 +24,7 @@ namespace DesignPattern.Fabrique
             ItemList = new List<Item>();
         }
 
+        public List<Personnage> PersonnageList { get; set; }
+        public List<Item> ItemList { get; set; }
     }
 }

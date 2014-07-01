@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DesignPattern.Observer
+﻿namespace DesignPattern.Observer
 {
-    class Observateur : ObservateurAbstrait
+    internal class Observateur : ObservateurAbstrait
     {
         private readonly string nom;
         private EtatAbstrait etatObservé;
@@ -22,7 +16,6 @@ namespace DesignPattern.Observer
         public override void MiseAjour()
         {
             etatObservé = Personnage.EtatCourant;
-            
         }
     }
 }

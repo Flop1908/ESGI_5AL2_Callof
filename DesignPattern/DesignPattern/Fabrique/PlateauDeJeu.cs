@@ -1,38 +1,30 @@
-﻿using DesignPattern.Objet;
+﻿using System.Collections.Generic;
+using DesignPattern.Objet;
 using DesignPattern.Observer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DesignPattern.Fabrique
 {
-    class PlateauDeJeu : PlateauDeJeuAbstrait
+    internal class PlateauDeJeu : PlateauDeJeuAbstrait
     {
-
-        public List<Personnage> PersonnageList ;
         public List<Item> ItemList;
-
+        public List<Personnage> PersonnageList;
 
         public PlateauDeJeu()
-            : base()
         {
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
-                for (int j = 0; j < 10; j++)
+                for (var j = 0; j < 10; j++)
                 {
-                    Zone Zone = new Zone();
-                    Zone.column = i;
-                    Zone.row = j;
+                    var zone = new Zone();
+                    zone.column = i;
+                    zone.row = j;
 
-                    this.AjouteZone(Zone);
-
+                    AjouteZone(zone);
                 }
             }
 
             PersonnageList = new List<Personnage>();
             ItemList = new List<Item>();
         }
-
     }
 }

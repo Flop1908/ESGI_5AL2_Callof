@@ -1,31 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
 using DesignPattern.Fabrique;
-using DesignPattern.Observer;
 using DesignPattern.Objet;
-
+using DesignPattern.Observer;
 
 namespace Wpf.Game.Simulation
 {
-    class SimulationJeu
+    internal class SimulationJeu
     {
-        
-
+        private static SimulationJeu uneInstance;
+        private EnvironnementDeJeu Environnement;
+        private FabriquePlateauDeJeu FPlateau;
         public PlateauDeJeu plateau;
         public PlateauFinal plateaufinal;
-        private EnvironnementDeJeu Environnement;
 
-        Random rdm;
-        FabriquePlateauDeJeu FPlateau ;
+        private Random rdm;
 
-        private static SimulationJeu uneInstance;
+        private SimulationJeu()
+        {
+        }
+
         public static SimulationJeu Instance
         {
             get
@@ -34,23 +27,17 @@ namespace Wpf.Game.Simulation
                 {
                     uneInstance = new SimulationJeu();
                 }
- 
+
                 return uneInstance;
             }
-        }
- 
-        private SimulationJeu() 
-        { 
-            
         }
 
         public void Initialisation(int parameter_plateau, int parameter_pointdevie, int parameter_position)
         {
-
             Environnement = new EnvironnementDeJeu();
             plateau = new PlateauDeJeu();
             plateaufinal = new PlateauFinal();
-            
+
 
             CreerPlateauDeJeu(parameter_plateau);
             CreerPersonnage(parameter_pointdevie, parameter_position);
@@ -62,8 +49,8 @@ namespace Wpf.Game.Simulation
         {
             rdm = new Random();
 
-            Chevalier perso1 = new Chevalier();
-            Archer perso2 = new Archer();
+            var perso1 = new Chevalier();
+            var perso2 = new Archer();
 
             if (param_pdv == 0)
             {
@@ -75,7 +62,6 @@ namespace Wpf.Game.Simulation
             }
             else if (param_pdv > 1)
             {
-
                 perso1 = new Chevalier("Bomberman", new EtatEnAttente(), param_pdv);
                 perso1.SetAvatar();
 
@@ -93,20 +79,19 @@ namespace Wpf.Game.Simulation
 
             if (param_pos == 0)
             {
-                perso1.Position = (Zone)plateau.GetZoneList()[rdm.Next(0, 80)];
-                perso2.Position = (Zone)plateau.GetZoneList()[rdm.Next(0, 80)];
+                perso1.Position = (Zone) plateau.GetZoneList()[rdm.Next(0, 80)];
+                perso2.Position = (Zone) plateau.GetZoneList()[rdm.Next(0, 80)];
             }
             else if (param_pos > 1)
             {
-                perso1.Position = (Zone)plateau.GetZoneList()[0];
-                perso2.Position = (Zone)plateau.GetZoneList()[0];
+                perso1.Position = (Zone) plateau.GetZoneList()[0];
+                perso2.Position = (Zone) plateau.GetZoneList()[0];
             }
             else if (param_pos == 1)
             {
-                perso1.Position = (Zone)plateau.GetZoneList()[25];
-                perso2.Position = (Zone)plateau.GetZoneList()[45];
+                perso1.Position = (Zone) plateau.GetZoneList()[25];
+                perso2.Position = (Zone) plateau.GetZoneList()[45];
             }
-
 
 
             plateau.PersonnageList.Add(perso1);
@@ -115,12 +100,12 @@ namespace Wpf.Game.Simulation
 
         public void CreerItem(int param_plat)
         {
-            Goal goal = new Goal();
+            var goal = new Goal();
             goal.Potion = 100;
             goal.SetAvatar("goal.jpg");
             if (param_plat == 1)
             {
-                goal.Position = (Zone)plateaufinal.GetZoneList()[4];
+                goal.Position = (Zone) plateaufinal.GetZoneList()[4];
                 plateaufinal.ItemList.Add(goal);
             }
             else
@@ -137,7 +122,7 @@ namespace Wpf.Game.Simulation
                 plateau.ItemList.Add(goal);
             }
 
-            PotionVie potion = new PotionVie();
+            var potion = new PotionVie();
             potion.Potion = 250;
             potion.SetAvatar("potion.gif");
 
@@ -155,16 +140,16 @@ namespace Wpf.Game.Simulation
 
         public void CreerPortail()
         {
-            Portail portailbleu = new Portail();
+            var portailbleu = new Portail();
             portailbleu.SetAvatar("portalbleu.jpg");
 
-            portailbleu.Position = (Zone)plateau.GetZoneList()[rdm.Next(0, plateau.GetZoneList().Count - 1)];
+            portailbleu.Position = (Zone) plateau.GetZoneList()[rdm.Next(0, plateau.GetZoneList().Count - 1)];
             plateau.ItemList.Add(portailbleu);
 
-            Portail portailrouge = new Portail();
+            var portailrouge = new Portail();
             portailrouge.SetAvatar("portalrouge.jpg");
 
-            portailrouge.Position = (Zone)plateaufinal.GetZoneList()[0];
+            portailrouge.Position = (Zone) plateaufinal.GetZoneList()[0];
             plateaufinal.ItemList.Add(portailrouge);
         }
 
@@ -174,7 +159,5 @@ namespace Wpf.Game.Simulation
             plateau = Environnement.CreerPlateauDeJeu(FPlateau);
             if (param_plateau == 1) plateaufinal = Environnement.CreerPlateauFinal(FPlateau);
         }
-
-
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -13,31 +10,27 @@ namespace DesignPattern.Observer
 {
     public abstract class Personnage
     {
-        public string Nom { get; set; }
-        public int PointDeVie { get; set; }
-        public Zone Position { get; set; }
         public Image Avatar;
-        
 
-        public bool ObjectifAtteint;
+
         public bool EstMort;
+        public bool ObjectifAtteint;
         public bool PrendPotion;
 
         public Zone ProchainCoupGagnant;
 
         public List<ZoneAbstrait> ZoneAcessibleList;
-        private EtatAbstrait etatCourant;
-       
+        private EtatAbstrait _etatCourant;
+
 
         public Personnage()
         {
-
         }
 
-        protected Personnage(string _Nom, int _Vie, EtatAbstrait _Etat)
+        protected Personnage(string nom, int vie, EtatAbstrait etat)
         {
-            Nom = _Nom;
-            PointDeVie = _Vie;
+            Nom = nom;
+            PointDeVie = vie;
             Position = new Zone();
             Avatar = new Image();
             ZoneAcessibleList = new List<ZoneAbstrait>();
@@ -45,19 +38,22 @@ namespace DesignPattern.Observer
             EstMort = false;
             ProchainCoupGagnant = null;
             PrendPotion = false;
-            etatCourant = _Etat;
+            _etatCourant = etat;
         }
+
+        public string Nom { get; set; }
+        public int PointDeVie { get; set; }
+        public Zone Position { get; set; }
 
         public EtatAbstrait EtatCourant
         {
-            get { return etatCourant; }
+            get { return _etatCourant; }
             set
             {
-                etatCourant = value;
+                _etatCourant = value;
                 //Console.WriteLine("Etat : " + etatCourant.GetType().Name);
             }
         }
-
 
 
         public virtual void SetAvatar()
@@ -69,7 +65,6 @@ namespace DesignPattern.Observer
         //-----------------------------------------------------------------------------
         public virtual void SeDeplacer()
         {
-
         }
 
         public int GetPointDeVie()
@@ -77,15 +72,13 @@ namespace DesignPattern.Observer
             return PointDeVie;
         }
 
-        public virtual void AnalyseSituation(List<Item> ListItem)
+        public virtual void AnalyseSituation(List<Item> listItem)
         {
-            
         }
 
         public void Execution()
         {
-            etatCourant.ModifieEtat(this);
+            _etatCourant.ModifieEtat(this);
         }
-
     }
 }

@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DesignPattern.Fabrique
 {
-    abstract class PlateauDeJeuAbstrait 
+    internal abstract class PlateauDeJeuAbstrait
     {
-        List<ZoneAbstrait> ZoneList;
-        List<AccesAbstrait> AccesList;
+        private readonly List<AccesAbstrait> AccesList;
+        private readonly List<ZoneAbstrait> ZoneList;
 
-        
 
         public PlateauDeJeuAbstrait()
         {
@@ -30,7 +26,7 @@ namespace DesignPattern.Fabrique
 
         public List<ZoneAbstrait> GetZoneList()
         {
-            return this.ZoneList;
+            return ZoneList;
         }
     }
 }

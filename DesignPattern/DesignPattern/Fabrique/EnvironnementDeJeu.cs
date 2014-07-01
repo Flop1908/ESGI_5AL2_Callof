@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DesignPattern.Fabrique
+﻿namespace DesignPattern.Fabrique
 {
-    class EnvironnementDeJeu
+    internal class EnvironnementDeJeu
     {
         public PlateauDeJeu CreerPlateauDeJeu(FabriquePlateauDeJeuAbstrait fabrique)
         {
-            return (PlateauDeJeu)fabrique.CreerPlateauDeJeu();
+            return (PlateauDeJeu) fabrique.CreerPlateauDeJeu();
         }
 
         public PlateauFinal CreerPlateauFinal(FabriquePlateauDeJeuAbstrait fabrique)
         {
-            return (PlateauFinal)fabrique.CreerPlateauFinal();
+            return (PlateauFinal) fabrique.CreerPlateauFinal();
         }
     }
 }

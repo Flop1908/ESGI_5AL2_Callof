@@ -1,83 +1,88 @@
 ﻿<Window x:Class="DesignPattern.MainWindow"
-            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        	    Title="MainWindow" WindowState="Maximized" Height="611.119" Width="1139.343">
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" WindowState="Maximized" Height="611.119" Width="1139.343">
 
     <DockPanel>
-        <TextBlock DockPanel.Dock="Left" Background="BlanchedAlmond" Width="250" Margin="0,0,0,0" TextAlignment="Center">
+        <TextBlock DockPanel.Dock="Left" Background="BlanchedAlmond" Width="250" Margin="0,0,0,0"
+                   TextAlignment="Center">
 
-        <StackPanel Width="248" Height="581">
-            <Label HorizontalAlignment="Center">PARAMETRES</Label>
-            <StackPanel>
-                <Label HorizontalAlignment="Center" Margin="10">Simulation :</Label>
-                <RadioButton GroupName="Simulation" Content="Deplacement" IsChecked="True" Name="rb_deplacement"/>
-                <RadioButton GroupName="Simulation" Content="Portail" Name="rb_portail" />
-            </StackPanel>
-            
-            <StackPanel>
-                <Label HorizontalAlignment="Center" Margin="10">Point de vie :</Label>
-                <RadioButton GroupName="PointDeVie" Content="Hasard" IsChecked="True" Name="rb_pdv_hasard"/>
-                <RadioButton GroupName="PointDeVie" Content="Identique pour tous" Name="rb_pdv_identique" /><TextBox Width="30" HorizontalAlignment="Left" Name="tb_pdv"></TextBox>
-                <RadioButton GroupName="PointDeVie" Content="Defaut" Name="rb_pdv_defaut"/>
-            </StackPanel>
-        
-            <StackPanel>
-                <Label HorizontalAlignment="Center" Margin="10">Positionnement :</Label>
-                <RadioButton GroupName="Positionnement" Content="Hasard" IsChecked="True" Name="rb_pos_hasard"/>
-                <RadioButton GroupName="Positionnement" Content="Identique pour tous" Name="rb_pos_identique" />
-                <RadioButton GroupName="Positionnement" Content="Defaut" Name="rb_pos_defaut"/>
-            </StackPanel>
-        
-            <!--<StackPanel>
+            <StackPanel Width="248" Height="581">
+                <Label HorizontalAlignment="Center">PARAMETRES</Label>
+                <StackPanel>
+                    <Label HorizontalAlignment="Center" Margin="10">Simulation :</Label>
+                    <RadioButton GroupName="Simulation" Content="Deplacement" IsChecked="True" Name="RbDeplacement" />
+                    <RadioButton GroupName="Simulation" Content="Portail" Name="RbPortail" />
+                </StackPanel>
+
+                <StackPanel>
+                    <Label HorizontalAlignment="Center" Margin="10">Point de vie :</Label>
+                    <RadioButton GroupName="PointDeVie" Content="Hasard" IsChecked="True" Name="RbPdvHasard" />
+                    <RadioButton GroupName="PointDeVie" Content="Identique pour tous" Name="RbPdvIdentique" />
+                    <TextBox Width="30" HorizontalAlignment="Left" Name="TbPdv" />
+                    <RadioButton GroupName="PointDeVie" Content="Defaut" Name="RbPdvDefaut" />
+                </StackPanel>
+
+                <StackPanel>
+                    <Label HorizontalAlignment="Center" Margin="10">Positionnement :</Label>
+                    <RadioButton GroupName="Positionnement" Content="Hasard" IsChecked="True" Name="RbPosHasard" />
+                    <RadioButton GroupName="Positionnement" Content="Identique pour tous" Name="RbPosIdentique" />
+                    <RadioButton GroupName="Positionnement" Content="Defaut" Name="RbPosDefaut" />
+                </StackPanel>
+
+                <!--<StackPanel>
                 <Label HorizontalAlignment="Center" Margin="10">Objectif :</Label>
                 <RadioButton GroupName="Objectif" Content="Hasard" IsChecked="True" Name="rb_obj_hasard"/>
                 <RadioButton GroupName="Objectif" Content="Identique pour tous" Name="rb_obj_identique" />
                 <RadioButton GroupName="Objectif" Content="Defaut" Name="rb_obj_defaut"/>
             </StackPanel>-->
-        
-            <!--<StackPanel>       
+
+                <!--<StackPanel>       
                 <Label HorizontalAlignment="Center" Margin="10">Strategie :</Label>
                 <RadioButton GroupName="Strategie" Content="Hasard" IsChecked="True" Name="rb_str_hasard"/>
                 <RadioButton GroupName="Strategie" Content="Identique pour tous" Name="rb_str_identique" />
                 <RadioButton GroupName="Strategie" Content="Defaut" Name="rb_str_defaut"/>
             </StackPanel>-->
-            <Button HorizontalAlignment="Center" Content="Chargement" Click="Button_Click"></Button>
-        </StackPanel>
+                <Button HorizontalAlignment="Center" Content="Chargement" Click="Button_Click" />
+            </StackPanel>
 
         </TextBlock>
-        
+
         <TextBlock TextAlignment="Left">
-        <DockPanel Height="505" Width="535" Margin="50,0,0,0">	
-            <TextBlock DockPanel.Dock="Bottom" Height="94" Margin="200,0,0,0">
-                <Button Name="BtnNextTurn" HorizontalAlignment="Center" Content="Tour suivant" Margin="0, 20, 0, 0" Click="Button_Click_1"/>
-                <LineBreak/>
-                <Label Content="Point de Vie J1: "></Label><Label Name="lbl_vie1"></Label>
-                        
-                <LineBreak/>
-                <Label Content="Point de Vie J2: "></Label><Label Name="lbl_vie2"></Label>
-            </TextBlock>
-            <TextBlock Name="PanelContent">
+            <DockPanel Height="505" Width="535" Margin="50,0,0,0">
+                <TextBlock DockPanel.Dock="Bottom" Height="94" Margin="200,0,0,0">
+                    <Button Name="BtnNextTurn" HorizontalAlignment="Center" Content="Tour suivant" Margin="0, 20, 0, 0"
+                            Click="Button_Click_1" />
+                    <LineBreak />
+                    <Label Content="Point de Vie J1: " />
+                    <Label Name="LblVie1" />
+
+                    <LineBreak />
+                    <Label Content="Point de Vie J2: " />
+                    <Label Name="LblVie2" />
+                </TextBlock>
+                <TextBlock Name="PanelContent">
 
 
-            <Grid Name="Grid_Game" Width="400" Height="350" Margin="50,60,0,0">
-                <Grid.Background>
-                    <ImageBrush ImageSource="plateau.png"></ImageBrush>
-                </Grid.Background>
+                    <Grid Name="GridGame" Width="400" Height="350" Margin="50,60,0,0">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="plateau.png" />
+                        </Grid.Background>
 
-            </Grid>
-            </TextBlock>
-        </DockPanel>
-            
-        <DockPanel Height="300" Width="300" Margin="0,0,0,0">	
-            <TextBlock Name="PanelContent2" >
-                <Grid Name="Grid_Game2" Width="200" Height="40" Margin="50,0,0,0">
-                    <Grid.Background>
-                        <ImageBrush ImageSource="plateau.png"></ImageBrush>
-                    </Grid.Background>
+                    </Grid>
+                </TextBlock>
+            </DockPanel>
 
-                </Grid>
-            </TextBlock>
-        </DockPanel>
+            <DockPanel Height="300" Width="300" Margin="0,0,0,0">
+                <TextBlock Name="PanelContent2">
+                    <Grid Name="GridGame2" Width="200" Height="40" Margin="50,0,0,0">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="plateau.png" />
+                        </Grid.Background>
+
+                    </Grid>
+                </TextBlock>
+            </DockPanel>
         </TextBlock>
     </DockPanel>
 </Window>
