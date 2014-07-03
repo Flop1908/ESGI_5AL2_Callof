@@ -19,6 +19,7 @@ namespace DesignPattern.Observer
         public bool EstMort;
         public bool ObjectifAtteint;
         public bool PrendPotion;
+        public bool PortailAtteint;
 
         public Zone ProchainCoupGagnant;
 
@@ -38,6 +39,7 @@ namespace DesignPattern.Observer
             Avatar = new Image();
             ZoneAcessibleList = new List<ZoneAbstrait>();
             ObjectifAtteint = false;
+            PortailAtteint = false;
             EstMort = false;
             ProchainCoupGagnant = null;
             PrendPotion = false;
@@ -75,8 +77,9 @@ namespace DesignPattern.Observer
             return PointDeVie;
         }
 
-        public virtual void AnalyseSituation(List<Item> listItem)
+        public virtual bool AnalyseSituation(List<Item> listItem, int maxRow, int maxColumn)
         {
+            return false;
         }
 
         public void Execution()

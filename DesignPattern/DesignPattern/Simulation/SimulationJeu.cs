@@ -57,7 +57,7 @@ namespace DesignPattern.Simulation
 
             if (paramPdv == 0)
             {
-                perso1 = new Chevalier("Bomberman", new EtatEnAttente(), _rdm.Next(150, 350));
+                perso1 = new Chevalier("Chevalier", new EtatEnAttente(), _rdm.Next(150, 350));
                 perso1.SetAvatar();
 
                 perso2 = new Archer("Archer", new EtatEnAttente(), _rdm.Next(150, 350));
@@ -65,7 +65,7 @@ namespace DesignPattern.Simulation
             }
             else if (paramPdv > 1)
             {
-                perso1 = new Chevalier("Bomberman", new EtatEnAttente(), paramPdv);
+                perso1 = new Chevalier("Chevalier", new EtatEnAttente(), paramPdv);
                 perso1.SetAvatar();
 
                 perso2 = new Archer("Archer", new EtatEnAttente(), paramPdv);
@@ -73,7 +73,7 @@ namespace DesignPattern.Simulation
             }
             else if (paramPdv == 1)
             {
-                perso1 = new Chevalier("Bomberman", new EtatEnAttente());
+                perso1 = new Chevalier("Chevalier", new EtatEnAttente());
                 perso1.SetAvatar();
 
                 perso2 = new Archer("Archer", new EtatEnAttente());

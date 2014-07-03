@@ -18,6 +18,7 @@ namespace DesignPattern
     public partial class MainWindow
     {
         private readonly List<Image> _listImage;
+        private readonly List<Image> _listImage2;
         private readonly List<ObservateurAbstrait> _observateurList = new List<ObservateurAbstrait>();
         private SimulationJeu _simulation;
 
@@ -29,6 +30,7 @@ namespace DesignPattern
             ShowWindow();
 
             _listImage = new List<Image>();
+            _listImage2 = new List<Image>();
         }
 
         /// <summary>
@@ -110,6 +112,7 @@ namespace DesignPattern
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             GridGame.Children.Clear();
+            GridGame2.Children.Clear();
             _simulation = SimulationJeu.Instance;
             _simulation.Initialisation(GetParamPlateau(), GetParamPdv(), GetParamPosition());
             //simulation = new SimulationJeu(GetParamPlateau(), GetParamPdv(), GetParamPosition());
@@ -148,8 +151,9 @@ namespace DesignPattern
                 GridGame.Children.Add(imgBack);
 
                 _listImage.Add(imgBack);
-                p.AnalyseSituation(_simulation.Plateau.ItemList);
+                p.AnalyseSituation(_simulation.Plateau.ItemList, 9, 9);
                 p.PointDeVie += 20;
+
                 Grid.SetRow(p.Avatar, p.Position.row);
                 Grid.SetColumn(p.Avatar, p.Position.column);
                 GridGame.Children.Remove(p.Avatar);
@@ -210,7 +214,99 @@ namespace DesignPattern
                 GridGame.Children.Remove(image);
             }
             _listImage.Clear();
+            
+            foreach (var image in _listImage2)
+            {
+                GridGame2.Children.Remove(image);
+            }
+            _listImage2.Clear();
 
+            foreach (var p in _simulation.Plateaufinal.PersonnageList)
+            {
+                
+                // Changement d'état et observer
+                var obs = new Observateur(p, "Passe à l'action");
+                Attach(obs);
+                p.Execution();
+                Notify();
+                Detach(obs);
+
+                if (p.EstMort == false && p.EtatCourant is EtatEnAction)
+                {
+                    //traitement visuel xaml
+                    var imgBack = new Image();
+                    imgBack.Source = new BitmapImage(new Uri(@"pack://application:,,/image.jpg"));
+                    imgBack.Stretch = Stretch.Fill;
+
+                    p.SeDeplacer();
+                    bool verif = p.AnalyseSituation(_simulation.Plateaufinal.ItemList, 0, 4);
+
+
+                    Grid.SetRow(imgBack, p.Position.row);
+                    Grid.SetColumn(imgBack, p.Position.column);
+                    GridGame2.Children.Remove(imgBack);
+                    GridGame2.Children.Add(imgBack);
+
+                    _listImage2.Add(imgBack);
+
+                    Grid.SetRow(p.Avatar, p.Position.row);
+                    Grid.SetColumn(p.Avatar, p.Position.column);
+                    GridGame2.Children.Remove(p.Avatar);
+                    GridGame2.Children.Add(p.Avatar);
+
+                    //Mise à jour des zones accessible
+                    foreach (var zoneAbstrait in p.ZoneAcessibleList)
+                    {
+                        var z = (Zone)zoneAbstrait;
+                        foreach (var item in _simulation.Plateaufinal.ItemList)
+                        {
+                            if ((item.Position.column == z.column) && (item.Position.row == z.row)) continue;
+                            var imgZa = new Image();
+                            imgZa.Source = new BitmapImage(new Uri(@"pack://application:,,/image.jpg"));
+                            imgZa.Stretch = Stretch.Fill;
+
+                            Grid.SetRow(imgZa, z.row);
+                            Grid.SetColumn(imgZa, z.column);
+                            GridGame2.Children.Remove(imgZa);
+                            GridGame2.Children.Add(imgZa);
+
+                            _listImage2.Add(imgZa);
+                        }
+                    }
+
+                    //Mise à jour des points de vie
+                    if (typeof(Chevalier) == p.GetType())
+                        LblVie1.Content = p.PointDeVie.ToString(CultureInfo.InvariantCulture);
+                    else if (typeof(Archer) == p.GetType())
+                        LblVie2.Content = p.PointDeVie.ToString(CultureInfo.InvariantCulture);
+
+                    foreach (var i in _simulation.Plateaufinal.ItemList)
+                    {
+                        if (i.Pris == false)
+                        {
+                            Grid.SetRow(i.Avatar, i.Position.row);
+                            Grid.SetColumn(i.Avatar, i.Position.column);
+                            GridGame2.Children.Remove(i.Avatar);
+                            GridGame2.Children.Add(i.Avatar);
+                        }
+                        else
+                        {
+                            Grid.SetRow(i.Avatar, i.Position.row);
+                            Grid.SetColumn(i.Avatar, i.Position.column);
+                            GridGame2.Children.Remove(i.Avatar);
+                        }
+                    }
+
+                    if (p.ObjectifAtteint) MessageBox.Show("GOAL");
+                    if (p.EstMort) MessageBox.Show(p.Nom + " est GAME OVER");
+                }
+
+                Attach(obs);
+                p.Execution();
+                Notify();
+                Detach(obs);
+            }
+            
             //Mise à jour des personnages
             foreach (var p in _simulation.Plateau.PersonnageList)
             {
@@ -227,9 +323,11 @@ namespace DesignPattern
                     var imgBack = new Image();
                     imgBack.Source = new BitmapImage(new Uri(@"pack://application:,,/image.jpg"));
                     imgBack.Stretch = Stretch.Fill;
-
+                    bool verif = false;
                     p.SeDeplacer();
-                    p.AnalyseSituation(_simulation.Plateau.ItemList);
+                    verif = p.AnalyseSituation(_simulation.Plateau.ItemList, 9, 9);
+
+                    
 
                     Grid.SetRow(imgBack, p.Position.row);
                     Grid.SetColumn(imgBack, p.Position.column);
@@ -264,7 +362,7 @@ namespace DesignPattern
                     }
 
                     //Mise à jour des points de vie
-                    if (typeof (Fantassin) == p.GetType())
+                    if (typeof (Chevalier) == p.GetType())
                         LblVie1.Content = p.PointDeVie.ToString(CultureInfo.InvariantCulture);
                     else if (typeof (Archer) == p.GetType())
                         LblVie2.Content = p.PointDeVie.ToString(CultureInfo.InvariantCulture);
@@ -288,6 +386,26 @@ namespace DesignPattern
 
                     if (p.ObjectifAtteint) MessageBox.Show("GOAL");
                     if (p.EstMort) MessageBox.Show(p.Nom + " est GAME OVER");
+
+                    if (verif)
+                    {
+                        p.Position = (Zone)_simulation.Plateaufinal.GetZoneList()[0];
+                        _simulation.Plateaufinal.PersonnageList.Add(p);
+                        _simulation.Plateau.PersonnageList.Remove(p);
+                        
+
+                        Grid.SetRow(p.Avatar, p.Position.row);
+                        Grid.SetColumn(p.Avatar, p.Position.column);
+                        GridGame.Children.Remove(p.Avatar);
+                        GridGame2.Children.Add(p.Avatar);
+                        p.AnalyseSituation(_simulation.Plateaufinal.ItemList, 0, 4);
+                        
+                        Attach(obs);
+                        p.Execution();
+                        Notify();
+                        Detach(obs);
+                        break;
+                    }
                 }
 
                 Attach(obs);
